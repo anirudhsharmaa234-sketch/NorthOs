@@ -32,15 +32,15 @@ jobs:
           echo '8f24228d70fe83ddcdac7c282408d36112adc65683745aa16164ef359d1c9ce1  /tmp/abel-source.zip' | sha256sum --check
           unzip -oq /tmp/abel-source.zip -d .
 
-      - name: Set deployment-relative Vite asset paths
+      - name: Set hosted site base path
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p = Path('vite.config.ts')
           s = p.read_text()
           needle = 'export default defineConfig({'
-          if "base: './'" not in s:
-              s = s.replace(needle, needle + "\n  base: './',", 1)
+          if "base: '/functions/v1/abel-site/'" not in s:
+              s = s.replace(needle, needle + "\n  base: '/functions/v1/abel-site/',", 1)
           p.write_text(s)
           PY
 

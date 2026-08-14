@@ -63,3 +63,10 @@ jobs:
             -H 'Content-Type: application/zip' \
             --data-binary '@/tmp/abel-dist.zip' \
             'https://qkgxknpzydxwxzzttmsl.supabase.co/functions/v1/abel-upload-dist'
+
+      - name: Verify published site entrypoint
+        run: |
+          curl --fail-with-body --location --retry 12 --retry-delay 2 --retry-all-errors \
+            'https://qkgxknpzydxwxzzttmsl.supabase.co/functions/v1/abel-site/' \
+            --output /tmp/published-index.html
+          grep -q '<div id="root"></div>' /tmp/published-index.html

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - abel-build
+      - main
   pull_request:
     branches:
       - main

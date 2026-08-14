@@ -1,0 +1,8 @@
+{
+  "name": "abel-cinematic-bootstrap",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "bash bootstrap-build.sh"
+  }
+}
